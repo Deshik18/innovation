@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stacked Column Chart</title>
+    <!-- Include Chart.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <div style="width: 80%; margin: auto;">
+        <canvas id="stackedColumnChart" width="500" height="250"></canvas>
+    </div>
+
+    <script>
+        // JavaScript code to fetch data from the PHP script and create a stacked column chart
+        fetch('path_to_script.php')
+            .then(response => response.json())
+            .then(data => {
+                const departments = Object.keys(data);
+                const activities = Object.keys(data[departments[0]]);
+                
+                const datasets = activities.map(activity => ({
+                    label: activity,
+                    backgroundColor: getRandomColor(), // Helper function to generate random colors
+                    data: departments.map(dept => data[dept][activity] || 0),
+                }));
+
+                const ctx = document.getElementById('stackedColumnChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: departments,
+                        datasets: datasets,
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                stacked: true,
+                                normalizedTo: 100,
+                            },
+                            y: {
+                                stacked: true,
+                                normalizedTo: 100,
+                            },
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error(error));
+
+        function getRandomColor() {
+            // Helper function to generate a random color
+            return '#' + Math.floor(Math.random()*16777215).toString(16);
+        }
+    </script>
+</body>
+</html>

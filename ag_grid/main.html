@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>JavaScript example</title>
+		<meta charSet="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<style media="only screen">
+            html, body {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                box-sizing: border-box;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            html {
+                position: absolute;
+                top: 0;
+                left: 0;
+                padding: 0;
+                overflow: auto;
+            }
+
+            body {
+                padding: 1rem;
+                overflow: auto;
+            }
+
+        </style>
+	</head>
+	<body>
+        <a href="../normal.php" class="back-button">Department-wise-Activity</a>
+        <?php include '../nav.php'; ?>
+		<div id="myGrid" class="ag-theme-alpine-dark" style="height: 100%">
+		</div>
+		<!-- Define the content69 div -->
+        <div class="content69">
+            <!-- Your content goes here -->
+		<script>var __basePath = './';</script>
+		<script src="https://cdn.jsdelivr.net/npm/ag-grid-enterprise@30.1.0/dist/ag-grid-enterprise.min.js">
+		</script>
+		<script src="main.js">
+		</script>
+        </div>
+	</body>
+</html>
