@@ -34,7 +34,6 @@ if (!isset($_SESSION['user_id'])) {
         }
 
         table {
-            margin-top: 17px;
             width: 150%;
             border-collapse: collapse;
             background-color: #fff;
@@ -66,7 +65,7 @@ if (!isset($_SESSION['user_id'])) {
 
         .marquee-container {
             position: absolute;
-            top: 0;
+            top: 43px;
             left: 0;
             width: 100%;
             background-color: #4CAF50;

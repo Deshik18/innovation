@@ -228,7 +228,7 @@ $var = $_SESSION['user_id'];
                         $currentValues[] = $row['activity'];
                     }
                 }
-
+                echo "<br>";
                 while ($row = $result->fetch_assoc()) {
                     $option = $row['activity'];
                     $isChecked = in_array($option, $currentValues) ? 'checked' : '';
@@ -248,7 +248,7 @@ $var = $_SESSION['user_id'];
                         $currentValues[] = $row['sdg'];
                     }
                 }
-
+                echo "<br>";
                 while ($row = $result->fetch_assoc()) {
                     $option = $row['sdg'];
                     $isChecked = in_array($option, $currentValues) ? 'checked' : '';
