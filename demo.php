@@ -379,31 +379,51 @@ $conn->close();
 
         // Function to download CSV
         function downloadCSV(filename, labels, chartId) {
-            var csv = 'Department,' + labels.join(',') + '\n';
-            var chartData = [];
-            var chart = window[chartId];
-            
-            for (var i = 0; i < chart.data.datasets.length; i++) {
-                var data = chart.data.datasets[i].data;
-                chartData.push(data.join(','));
-            }
-            
-            for (var i = 0; i < labels.length; i++) {
-                csv += labels[i] + ',' + chartData.map(row => row.split(',')[i]).join(',') + '\n';
-            }
-            
-            var blob = new Blob([csv], { type: 'text/csv' });
-            if (window.navigator.msSaveOrOpenBlob) {
-                window.navigator.msSaveOrOpenBlob(blob, filename);
-            } else {
-                var a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            }
+            // Check server maintenance mode via AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'check_maintenance.php', true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    
+                    if (response === '1') {
+                        // Server is not in maintenance mode, proceed with CSV download
+                        var csv = 'Department,' + labels.join(',') + '\n';
+                        var chartData = [];
+                        var chart = window[chartId];
+                        
+                        for (var i = 0; i < chart.data.datasets.length; i++) {
+                            var data = chart.data.datasets[i].data;
+                            chartData.push(data.join(','));
+                        }
+                        
+                        for (var i = 0; i < labels.length; i++) {
+                            csv += labels[i] + ',' + chartData.map(row => row.split(',')[i]).join(',') + '\n';
+                        }
+                        
+                        var blob = new Blob([csv], { type: 'text/csv' });
+                        if (window.navigator.msSaveOrOpenBlob) {
+                            window.navigator.msSaveOrOpenBlob(blob, filename);
+                        } else {
+                            var a = document.createElement('a');
+                            a.href = URL.createObjectURL(blob);
+                            a.download = filename;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                        }
+                    } else {
+                        // Server is in maintenance mode, show an alert
+                        alert('Server is currently in maintenance. Please try again later.');
+                        window.location.href = "index.php";
+                    }
+                }
+            };
+
+            xhr.send();
         }
+
     </script>
 </body>
 </html>

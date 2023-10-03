@@ -1,5 +1,6 @@
 <?php
 include 'config.php';
+include 'nav1.php';
 // Initialize initial state
 $initialState = false;
 
@@ -33,6 +34,7 @@ $conn->close();
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="../styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -76,13 +78,6 @@ $conn->close();
         .btn-no:hover {
             background-color: #d32f2f;
         }
-
-        .link {
-            display: block;
-            margin-top: 20px;
-            text-decoration: none;
-            font-size: 18px;
-        }
     </style>
 </head>
 <body>
@@ -91,9 +86,7 @@ $conn->close();
         <form method="post" class="btn-container">
             <p class="confirmation">Do you want to change the server state to <?php echo $initialState ? 'off' : 'on'; ?>?</p>
             <button type="submit" name="confirm" class="btn btn-yes">Yes</button>
-            <button type="submit" name="confirm" class="btn btn-no">No</button>
         </form>
-        <a href="insert.php" class="link">Go to Insert Page</a>
     </div>
 </body>
 </html>
