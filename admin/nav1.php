@@ -10,4 +10,5 @@
     <a href="display.php">Display Data</a>
     <a href="insert.php">Insert Data</a>
     <a href="logout.php">Logout</a>
+    <a href="server.php">Server State</a>
 </div>
