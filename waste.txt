@@ -1,0 +1,53 @@
+            var beChart = new Chart(document.getElementById('beChart'), {
+                type: 'bar',
+                data: {
+                    labels: <?= json_encode($departments) ?>,
+                    datasets: [{
+                        label: 'BE',
+                        data: <?= json_encode($beData) ?>,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)'
+                    }]
+                }
+            });
+
+            // Create Bar Chart for RGB
+            var gbeChart = new Chart(document.getElementById('gbeChart'), {
+                type: 'bar',
+                data: {
+                    labels: <?= json_encode($departments) ?>,
+                    datasets: [{
+                        label: 'GBE',
+                        data: <?= json_encode($gbeData) ?>,
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)'
+                    }]
+                }
+            });
+
+            // Create Multi-Series Chart
+            var multiSeries3Data = {
+                labels: <?= json_encode($departments) ?>,
+                datasets: [
+                    {
+                        label: 'be',
+                        data: <?= json_encode($beData) ?>,
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)'
+                    },
+                    {
+                        label: 'RGB',
+                        data: <?= json_encode($gbeData) ?>,
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)'
+                    }
+                ]
+            };
+
+            var multiSeries3Chart = new Chart(document.getElementById('multiSeries3Chart'), {
+                type: 'bar',
+                data: multiSeries3Data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
