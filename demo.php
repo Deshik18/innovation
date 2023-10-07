@@ -118,10 +118,6 @@ $conn->close();
             margin: 0; /* Remove margin */
         }
 
-        .chart-container {
-            width: 80%;
-        }
-
         /* Increase the font size of chart labels */
         .chart-label {
             font-size: 16px;
@@ -186,7 +182,7 @@ $conn->close();
                 $chartCount = count($charts);
 
                 for ($i = 0; $i < $chartCount; $i++) {
-                    echo '<div class="chart-container" style="border: 1px solid #ccc; padding: 10px; position: relative; box-sizing: border-box;">';
+                    echo '<div class="chart-container" style="border: 1px solid #ccc; padding: 5px; height: 250px; width: 470px; position: relative; box-sizing: border-box;">';
                     echo '<h3 class="chart-label">' . $charts[$i]['label'] . '</h3>';
                     echo '<canvas id="' . $charts[$i]['id'] . '"></canvas>';
                     

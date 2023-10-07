@@ -304,7 +304,7 @@ $var = $_SESSION['user_id'];
             <script>
                 setTimeout(function() {
                     window.location.href = "display.php"; // Navigate to display.php after 10 seconds
-                }, 4000); // Refresh after 10 seconds (10000 milliseconds)
+                }, 10000); // Refresh after 10 seconds (10000 milliseconds)
             </script>
         </div>
     </div>
